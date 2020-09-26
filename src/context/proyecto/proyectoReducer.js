@@ -3,7 +3,8 @@ import {
     OBTENER_PROYECTO,
     AGREGAR_PROYECTO,
     VALIDAR_FORMULARIO,
-    PROYECTO_ACTUAL
+    PROYECTO_ACTUAL,
+    ELIMINAR_PROYECTO,
 } from '../../types';
 
 export default (state, action) => {
@@ -21,7 +22,7 @@ export default (state, action) => {
         case AGREGAR_PROYECTO:
             return {
                 ...state,
-                proyectos: [...state.proyectos, action.payload],
+                proyectos: [action.payload, ...state.proyectos],
                 formulario: false,
                 errorformulario: false
             }
@@ -34,6 +35,12 @@ export default (state, action) => {
             return {
                 ...state,
                 proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload)
+            }
+        case ELIMINAR_PROYECTO:
+            return {
+                ...state,
+                proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload),
+                proyecto: null
             }
         default:
             return state;
