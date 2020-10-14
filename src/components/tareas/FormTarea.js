@@ -51,13 +51,12 @@ const FormTarea = () => {
             actializarTarea(tarea);
             limpiarTarea();
         }else{
-            tarea.estado = false;
-            tarea.proyectoId = proyectoActual.id;
+            tarea.proyecto = proyectoActual._id;
             agregarTarea(tarea);
         }
 
         //obtener tareas y filtra las tareas
-        obtenerTareas(proyectoActual.id);
+        obtenerTareas(proyectoActual._id);
 
 
         //reiniciar el form

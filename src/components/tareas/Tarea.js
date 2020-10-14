@@ -4,17 +4,17 @@ const Tarea = ({tarea}) => {
 
     //obtener tareas proyecto
     const tareaContext  = useContext(TareaContext);
-    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea,guardarTareaActual } = tareaContext;
+    const { eliminarTarea, obtenerTareas, guardarTareaActual, actializarTarea } = tareaContext;
 
 
     const onClickEliminarTarea = tarea => {
-        let proyectoId = tarea.proyectoId;
-        eliminarTarea(tarea.id);
+        let proyectoId = tarea.proyecto;
+        eliminarTarea(tarea._id,proyectoId);
         obtenerTareas(proyectoId);
     }
     const  onClickCambiarEstadoTarea = tarea => {
         tarea.estado = !tarea.estado;
-        cambiarEstadoTarea(tarea);
+        actializarTarea(tarea);
     }
     const selecionarTarea = tarea => {
         guardarTareaActual(tarea);
